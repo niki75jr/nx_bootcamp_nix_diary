@@ -40,7 +40,6 @@ You can also change the values interactively.
 `diary`  - launch the app in an interactive mode\
 `diary -a` - create a record\
 `diary -s` - display all available statistics\
-`diary -d` - delete the directory with entries\
-`diary -f` - delete the directory with entries and source files
-
+`diary -d` - delete the directory with records\
+`diary -f` - delete the directory with records and source files
 
