@@ -6,5 +6,5 @@ source $HOME/.diaryNXBC/src/functions/getInitValues.sh
 function replace () {
 	tempPattern="$1=$(eval echo '$'{$1})"
 	tempReplacement="$1=$2"
-	sed -i "s!${tempPattern}!$tempReplacement!" "${HOME}/.diaryNXBC/.config"
+	sed -i "s!${tempPattern}!${tempReplacement}!" "${HOME}/.diaryNXBC/.config"
 }
