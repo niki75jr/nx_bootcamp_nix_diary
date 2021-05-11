@@ -1,0 +1,29 @@
+source $HOME/.diaryNXBC/src/functions/getInitValues.sh
+
+function diary() {
+if [ $# -eq 0 ]; then
+	"${HOME}/.diaryNXBC/src/functions/menu/menuStart.sh"
+else
+	if [ $# -eq 1 ]; then
+		if [ $1 = '-a' ]; then
+			"${HOME}/.diaryNXBC/src/functions/menu/menuCreateRecord.sh"
+		elif [ $1 = '-d' ]; then
+			source "${HOME}/.diaryNXBC/src/functions/rmDiary.sh"
+			rmDiary
+		elif [ $1 = '-f' ]; then
+			source "${HOME}/.diaryNXBC/src/functions/rmDiary.sh"
+			rmDiary '-f'
+		elif [ $1 = '-s' ]; then
+			echo "---"
+			"$HOME/.diaryNXBC/src/functions/menu/menuStatQuantRecords.sh"
+			echo "---"
+			"$HOME/.diaryNXBC/src/functions/menu/menuStatDateLastRec.sh"
+			"$HOME/.diaryNXBC/src/functions/menu/menuStatPerDates.sh"
+			"$HOME/.diaryNXBC/src/functions/menu/menuStatLongestRecord.sh"
+			echo "---"
+		else
+			echo "argument \"$1\" not found"
+		fi
+	fi
+fi
+}
