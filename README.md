@@ -9,7 +9,7 @@
 #### Unzip
    
     sudo apt update
-    sudo apt install zip
+    sudo apt install unzip
     
 ### Installation
 
