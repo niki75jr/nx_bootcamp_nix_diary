@@ -2,22 +2,34 @@
 
 source $HOME/.diaryNXBC/src/functions/getInitValues.sh
 source $HOME/.diaryNXBC/src/functions/getDates.sh
-source $HOME/.diaryNXBC/src/functions/getValue.sh
 source $HOME/.diaryNXBC/src/functions/generateID.sh
 
 getDates
 
 function createRecord() {
-	path="${DIARY_DIR}/${YEAR}/${MONTH}"
-	mkdir --parents $path
+	mkdir --parents "${DIARY_DIR}/.tempNewRec"
 	ID=$(generateID)
-	fileName="${ID}__${YEAR}-${MONTH}-${DAY}_${HOUR}-${MIN}.md"
-	touch "${path}/${fileName}"
-	cat "${DIARY_TEMPLATE}" > "${path}/${fileName}"
-	sed -i "s/_date/$(date +'%F')/" "${path}/${fileName}"
-	sed -i "s/_id/${ID}/" "$path/$fileName"
-	sed -i "s/_author/${DIARY_AUTHOR}/" "${path}/${fileName}"
-	$DIARY_EDITOR "${path}/${fileName}"
+	tempFileName="${DIARY_DIR}/.tempNewRec/.newRecord"
+	touch "${tempFileName}"
+	cat "${DIARY_TEMPLATE}" > "${tempFileName}"
+	sed -i "s/_date/$(date +'%F')/" "${tempFileName}"
+	sed -i "s/_id/${ID}/" "${tempFileName}"
+	sed -i "s/_author/${DIARY_AUTHOR}/" "${tempFileName}"
+	$DIARY_EDITOR "${tempFileName}"
+	#
+	fNameDate="$(grep --only-matching --perl-regexp  '\d{4,4}-\d{2,2}-\d{2,2}' "${tempFileName}")"
+	fNameYear=${fNameDate:0:4}
+	fNameMonth=${fNameDate:5:2}
+	fNameDay=${fNameDate:8:2}
+	#
+	fNameID=$"(grep --only-matching --perl-regexp '\`ID: \w{8,8}\`')"
+	fNameID="${fNameID:5:8}"
+	#
+	fName="${ID}__${fNameYear}-${fNameMonth}-${fNameDay}_${HOUR}-${MIN}.md"
+	fullPath="${DIARY_DIR}/${fNameYear}/${fNameMonth}"
+	mkdir --parents "${fullPath}"
+	mv "${tempFileName}" "${fullPath}/${fName}"
+	rm --recursive --force "${DIARY_DIR}/.tempNewRec"
 }
 
 createRecord

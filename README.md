@@ -1,4 +1,4 @@
-## Homework # 1:  📘✏️  Diary Prototype
+## Homework #1:  📘✏️  Diary Prototype
 
 <p align="center">This is a simple implementation of the <b>diary </b>in a shell.</p>
 
