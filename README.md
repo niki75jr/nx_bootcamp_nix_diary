@@ -3,20 +3,14 @@
 <p align="center">This is a simple implementation of the <b>diary </b>in a shell.</p>
 
 ##  Getting Started
-
-### Requirements
-
-#### Unzip
    
-    sudo apt update
-    sudo apt install unzip
-    
 ### Installation
 
-    wget https://codeload.github.com/niki75jr/nx_bootcamp_nix_diary/zip/refs/heads/main
-    unzip -q main
-    cd nx_bootcamp_nix_diary-main
+    curl -L https://github.com/niki75jr/nx_bootcamp_nix_diary/archive/refs/tags/v0.1.1.tar.gz | tar xz
+    cd nx_bootcamp_nix_diary-0.1.1
     ./install.sh
+
+<p>or use <b>docker-image</b> (<b>17 MB</b>), more details in branch &quot;<a href="https://github.com/niki75jr/nx_bootcamp_nix_diary/tree/Docker-Alpine" target="_blank"><b>Docker-Alpine</b></a>&quot;</p>
     
 ### Usage
 
@@ -42,4 +36,3 @@ You can also change the values interactively.
 `diary -s` - display all available statistics\
 `diary -d` - delete the directory with records\
 `diary -f` - delete the directory with records and source files
-
