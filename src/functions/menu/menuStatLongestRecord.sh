@@ -9,7 +9,7 @@ function walkFolder() {
 		if [ -d "${fileName}" ]; then
 			walkFolder "${fileName}"
 		elif [ -f "${fileName}" ]; then
-			curLength=$(cat "${fileName}" | wc --chars)
+			curLength=$(cat "${fileName}" | wc -m)
 			if [ ${curLength} -gt ${tempMaxLength} ]; then
 				tempMaxLength=${curLength}
 				tempMaxFile="${fileName}"
