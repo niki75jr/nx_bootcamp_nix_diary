@@ -6,8 +6,8 @@
    
 ### Installation
 
-    curl -L https://github.com/niki75jr/nx_bootcamp_nix_diary/archive/refs/tags/v0.1.1.tar.gz | tar xz
-    cd nx_bootcamp_nix_diary-0.1.1
+    curl -L https://github.com/niki75jr/nx_bootcamp_nix_diary/archive/main.tar.gz | tar xz
+    cd nx_bootcamp_nix_diary-main
     ./install.sh
 
 <p>or use <b>docker-image</b> (<b>17 MB</b>), more details in branch &quot;<a href="https://github.com/niki75jr/nx_bootcamp_nix_diary/tree/Docker-Alpine" target="_blank"><b>Docker-Alpine</b></a>&quot;</p>
