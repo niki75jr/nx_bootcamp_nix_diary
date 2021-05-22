@@ -1,8 +1,8 @@
-  #!/bin/bash
+#!/bin/bash
 
 source $HOME/.diaryNXBC/src/functions/walkFolderShowFiles.sh
 
-function compareStrDate () {
+function compareDate () {
 	echo -e "$1"'\n'"$2" | sort -r | head -n 1
 }
 
@@ -12,8 +12,8 @@ function walkFolder() {
 		if [ -d "${fileName}" ]; then
 			walkFolder "${fileName}"
 		elif [ -f "${fileName}" ]; then
-			str=$(echo "${fileName}" | grep -E -E -o "\d*-\d*-\d*_\d*-\d*")
-			maxDate=$(compareStrDate ${maxDate} ${str})
+			str=$(echo "${fileName}" | grep -E -o "\d*-\d*-\d*_\d*-\d*")
+			maxDate=$(compareDate ${maxDate} ${str})
 		fi
 	done
 }
@@ -25,7 +25,7 @@ isExist=$?
 if [ $(echo ${isExist}) -eq 1 ]; then
 	walkFolder "${DIARY_DIR}"
 	echo -n "The last record was created: ${maxDate} \"("
-	echo "$(grep -E -E -o "/home.*${maxDate}\.md" ${file}))\""
+	echo "$(grep -E -o "/home.*${maxDate}\.md" ${file}))\""
 else
 	echo "Records not found"
 fi
