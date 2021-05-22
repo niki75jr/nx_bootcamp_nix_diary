@@ -8,9 +8,8 @@ isExist=$?
 
 if [ $(echo ${isExist}) -eq 1 ]; then
 	read -p "$(echo -e "->: ID=")"
-	temp1=$(cat "${file}" | grep -E -E -o "${DIARY_DIR}/\d*/\d*/${REPLY}.*\.md")
+	temp1=$(cat "${file}" | grep -E -o "${DIARY_DIR}/\d*/\d*/${REPLY}.*\.md")
 	echo "temp1: ${temp1}"
-	echo "tem"
 	if [ "${temp1}" ]; then
 		$DIARY_EDITOR "${temp1}"
 	else

@@ -30,8 +30,8 @@ if [ $(echo ${isExist}) -eq 1 ]; then
     break
   fi
   done
-  tempResult="$(cat ${file} | grep -E -E -o "#${REPLY}\s${DIARY_BACKUPS_DIR}.*$")"
-  tempResult="$(echo ${tempResult} | grep -E -E -o "${DIARY_BACKUPS_DIR}.*$")"
+  tempResult="$(cat ${file} | grep -E -o "#${REPLY}\s${DIARY_BACKUPS_DIR}.*$")"
+  tempResult="$(echo ${tempResult} | grep -E -o "${DIARY_BACKUPS_DIR}.*$")"
   mkdir -p "${DIARY_BACKUPS_DIR}/a1"
   tar --directory="${DIARY_DIR}" -xf "${tempResult}"
 else

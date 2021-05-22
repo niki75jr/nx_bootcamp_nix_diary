@@ -4,7 +4,7 @@
 function check () {
  if [ -r $2 ] && [ $# -eq 2 ]
   then
-   if [ $(grep -E -E $1 $2) ]
+   if [ $(grep -E $1 $2) ]
     then
 	 return 1
 	else

@@ -16,11 +16,11 @@ if [ $(echo ${isExist}) -eq 1 ]; then
   tempMaxWidth=0
   for str in $(cat "${file}"); do
     tempString1="$(head --lines=2 ${str})"
-    tempID="$(echo "${tempString1}" | grep -E -E -o "\`ID: \w{8,8}\`")"
+    tempID="$(echo "${tempString1}" | grep -E -o "\`ID: \w{8,8}\`")"
     tempID=${tempID:5:8}
-    tempDate="$(echo "${tempString1}" | grep -E -E -o "\`Date: \d{4,4}.\d{2,2}.\d{2,2}\`")"
+    tempDate="$(echo "${tempString1}" | grep -E -o "\`Date: \d{4,4}.\d{2,2}.\d{2,2}\`")"
     tempDate=${tempDate:7:10}
-    tempTitle="$(echo "${tempString1}" | grep -E -E -o "#### \".*\"")"
+    tempTitle="$(echo "${tempString1}" | grep -E -o "#### \".*\"")"
     tempTitle=${tempTitle:6:$((${#tempTitle}-7))}
     tempResult="${tempID} ${tempDate} $tempTitle"
     echo "${tempResult}" >> "${file1}"

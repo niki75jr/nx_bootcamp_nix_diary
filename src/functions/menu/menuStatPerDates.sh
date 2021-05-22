@@ -8,7 +8,7 @@ function extractDates() {
     if [ -d "${file_eD}" ]; then
       extractDates "${file_eD}"
     elif [ -f "${file_eD}" ]; then
-      DATE="$(echo ${file_eD} | grep -E -E -o "/\w{8,8}__\d{4,4}-\d{2,2}")"
+      DATE="$(echo ${file_eD} | grep -E -o "/\w{8,8}__\d{4,4}-\d{2,2}")"
       DATE=${DATE:11:7}
       [ ${DATE} ] && echo "${DATE}" >> "${file1}"
     fi
@@ -26,7 +26,7 @@ function countPerDate () {
     [ ${tempYEAR} != ${curYEAR} ] && 
     { 
       echo -n "┌─────$curYEAR: "
-      echo -n "$(cat ${file} | grep -E -E "\w{8,8}__${curYEAR}-" | wc -l) "
+      echo -n "$(cat ${file} | grep -E "\w{8,8}__${curYEAR}-" | wc -l) "
       echo "records"
     }
     tempYEAR=${curYEAR}
@@ -46,7 +46,7 @@ function countPerDate () {
         ;;
     esac
     echo -n "├─>${curMONTH}${tempENDING} month: "
-    echo -n "$(cat ${file} | grep -E -E "\w{8,8}__${curYEAR}-${curMONTH}" | wc -l) "
+    echo -n "$(cat ${file} | grep -E "\w{8,8}__${curYEAR}-${curMONTH}" | wc -l) "
     echo ;
   done
   fillChar ${#tempSTRING1} '█'; echo ''

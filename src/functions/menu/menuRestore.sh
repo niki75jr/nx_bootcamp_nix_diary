@@ -21,8 +21,8 @@ if [ -d "${DIARY_DIR}/.trash" ]; then
   while [ ${REPLY} -lt 1 ] || [ ${REPLY} -gt ${count} ]; do
     read -p "$(echo -e "->: ")"
   done
-  moving=$(cat "${file}" | grep -E -E "#${REPLY}\s${DIARY_DIR}" | grep -o "${DIARY_DIR}.*$")
-  tempYear=$(echo "${moving}" | grep -E -E -o "/\w{8,8}__\d{4,4}-\d{2,2}")
+  moving=$(cat "${file}" | grep -E "#${REPLY}\s${DIARY_DIR}" | grep -o "${DIARY_DIR}.*$")
+  tempYear=$(echo "${moving}" | grep -E -o "/\w{8,8}__\d{4,4}-\d{2,2}")
   tempMonth=${tempYear:16:2}
   tempYear=${tempYear:11:4}
   mkdir --parents "${DIARY_DIR}/${tempYear}/${tempMonth}"

@@ -23,7 +23,7 @@ if [ $(echo ${isExist}) -eq 1 ]; then
   while [ ${REPLY} -lt 1 ] || [ ${REPLY} -gt ${count} ]; do
     read -p "$(echo -e "->: ")"
   done
-  moving=$(cat "${file}" | grep -E -E "#${REPLY}\s${DIARY_DIR}" | grep -o "${DIARY_DIR}.*$")
+  moving=$(cat "${file}" | grep -E "#${REPLY}\s${DIARY_DIR}" | grep -o "${DIARY_DIR}.*$")
   mkdir --parents "${DIARY_DIR}/.trash"
   mv "${moving}" "${DIARY_DIR}/.trash"
   echo "\"${moving}\" moved to trash bin"
