@@ -11,7 +11,7 @@ function rmDiary () {
     		fi	
    		fi
   	fi
-    if [ -n "$(cat "${HOME}/.bashrc" | grep "source \"${HOME}/.diaryNXBC/src/diary\"")" ]; then
+    if [ -n "$(cat "${HOME}/.bashrc" | grep -E -E "source \"${HOME}/.diaryNXBC/src/diary\"")" ]; then
       sed -i "s@source \"${HOME}/.diaryNXBC/src/diary\"@@" "${HOME}/.bashrc"
       tempBool1="true"
     fi

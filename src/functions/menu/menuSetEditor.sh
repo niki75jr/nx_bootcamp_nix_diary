@@ -25,7 +25,7 @@ while [ 1 ]; do
 		break
 	fi
 done
-tempReplace=$(cat ${file} | grep --perl-regexp ${REPLY} | grep --only-matching --perl-regexp "/.*$")
+tempReplace=$(cat ${file} | grep -E -E ${REPLY} | grep -o "/.*$")
 rm "${file}"
 echo -n "\"${DIARY_DIR}\"--->"
 replace "DIARY_EDITOR" "${tempReplace}"

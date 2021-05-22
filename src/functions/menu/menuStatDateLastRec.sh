@@ -12,7 +12,7 @@ function walkFolder() {
 		if [ -d "${fileName}" ]; then
 			walkFolder "${fileName}"
 		elif [ -f "${fileName}" ]; then
-			str=$(echo "${fileName}" | grep --only-matching --perl-regexp "\d*-\d*-\d*_\d*-\d*")
+			str=$(echo "${fileName}" | grep -E -E -o "\d*-\d*-\d*_\d*-\d*")
 			maxDate=$(compareStrDate ${maxDate} ${str})
 		fi
 	done
@@ -25,7 +25,7 @@ isExist=$?
 if [ $(echo ${isExist}) -eq 1 ]; then
 	walkFolder "${DIARY_DIR}"
 	echo -n "The last record was created: ${maxDate} \"("
-	echo "$(grep --only-matching --perl-regexp "/home.*${maxDate}\.md" ${file}))\""
+	echo "$(grep -E -E -o "/home.*${maxDate}\.md" ${file}))\""
 else
 	echo "Records not found"
 fi

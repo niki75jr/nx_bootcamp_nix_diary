@@ -23,7 +23,7 @@ if [ $(echo ${isExist}) -eq 1 ]; then
 	while [ ${REPLY} -lt 1 ] || [ ${REPLY} -gt ${count} ]; do
 		read -p "$(echo -e "->: ")"
 	done
-	temp2=$(cat "${file}" | grep "^\s*#${REPLY}\s" | grep --only-matching "${DIARY_DIR}.*$")
+	temp2=$(cat "${file}" | grep -E -E "^\s*#${REPLY}\s" | grep -o "${DIARY_DIR}.*$")
 	$DIARY_EDITOR "${temp2}"
 else
 	echo "Records not found"
