@@ -7,11 +7,19 @@ else
     if [ $1 = '-a' ]; then
       "${HOME}/.diaryNXBC/src/functions/menu/menuCreateRecord.sh"
     elif [ $1 = '-d' ]; then
-      source "${HOME}/.diaryNXBC/src/functions/rmDiary.sh"
-      rmDiary
+      if [ "${UBUNTU}" != 'false' ]; then
+        source "${HOME}/.diaryNXBC/src/functions/rmDiary.sh"
+        rmDiary
+      else
+        echo 'Sorry, but this function is not available for this version of Linux.'
+      fi
     elif [ $1 = '-f' ]; then
-      source "${HOME}/.diaryNXBC/src/functions/rmDiary.sh"
-      rmDiary '-f'
+      if [ "${UBUNTU}" != 'false' ]; then
+        source "${HOME}/.diaryNXBC/src/functions/rmDiary.sh"
+        rmDiary '-f'
+      else
+        echo 'Sorry, but this function is not available for this version of Linux.'
+      fi
     elif [ $1 = '-s' ]; then
       echo "---"
       "$HOME/.diaryNXBC/src/functions/menu/menuStatQuantRecords.sh"
