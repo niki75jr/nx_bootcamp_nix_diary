@@ -4,3 +4,4 @@
 !install.sh
 !src/
 !/src/**
+!Dockerfile
