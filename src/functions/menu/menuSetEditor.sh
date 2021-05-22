@@ -1,32 +1,36 @@
 #!/bin/bash
 
-source $HOME/.diaryNXBC/src/functions/replace.sh
-source $HOME/.diaryNXBC/src/functions/fill.sh
+if [ "${UBUNTU}" != 'false' ]; then
+  source $HOME/.diaryNXBC/src/functions/replace.sh
+  source $HOME/.diaryNXBC/src/functions/fill.sh
 
-file="${DIARY_DIR}/.tempListEditor"
-update-alternatives --list editor | sort > ${file}
+  file="${DIARY_DIR}/.tempListEditor"
+  update-alternatives --list editor | sort > ${file}
 
-count=0
-countLine="$(wc -l < "${file}")"
-for str in $(cat "${file}"); do
-	count=$((count+1))
-	replacement="$(fillGap ${countLine} $count ' ')#${count}"
-	replacement="${replacement} ${str}"
-	sed -i "s!${str}!${replacement}!" "${file}"
-done
-tempString1="---Default editor for this diary is \"${DIARY_EDITOR}\""
-fillChar $((${#tempString1})) '█'; echo ''
-echo "${tempString1}"
-cat "${file}"
-fillChar $((${#tempString1})) '█'; echo ''
-while [ 1 ]; do
-	read -p "$(echo -n "->: ")"
-	if [ "${REPLY}" -ge 1 ] && [ "${REPLY}" -le "${countLine}" ]; then
-		break
-	fi
-done
-tempReplace=$(cat ${file} | grep -E ${REPLY} | grep -o "/.*$")
-rm "${file}"
-echo -n "\"${DIARY_DIR}\"--->"
-replace "DIARY_EDITOR" "${tempReplace}"
-echo "\"${tempReplace}\""
+  count=0
+  countLine="$(wc -l < "${file}")"
+  for str in $(cat "${file}"); do
+    count=$((count+1))
+    replacement="$(fillGap ${countLine} $count ' ')#${count}"
+    replacement="${replacement} ${str}"
+    sed -i "s!${str}!${replacement}!" "${file}"
+  done
+  tempString1="---Default editor for this diary is \"${DIARY_EDITOR}\""
+  fillChar $((${#tempString1})) '█'; echo ''
+  echo "${tempString1}"
+  cat "${file}"
+  fillChar $((${#tempString1})) '█'; echo ''
+  while [ 1 ]; do
+    read -p "$(echo -n "->: ")"
+    if [ "${REPLY}" -ge 1 ] && [ "${REPLY}" -le "${countLine}" ]; then
+      break
+    fi
+  done
+  tempReplace=$(cat ${file} | grep -E ${REPLY} | grep -o "/.*$")
+  rm "${file}"
+  echo -n "\"${DIARY_DIR}\"--->"
+  replace "DIARY_EDITOR" "${tempReplace}"
+  echo "\"${tempReplace}\""
+else
+  echo 'Sorry, but this function is not available for this version of Linux.'
+fi
